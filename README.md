@@ -14,10 +14,10 @@ With this method, your app will be converted into a Docker image. Then you can s
 
 For that, you can use `meteorhacks/meteord:onbuild` as your base image. Magically, that's only thing you have to do. Here's how to do it:
 
-Add following `Dockerfile` into the root of your app:
+Add following `Dockerfile` into the root of your app (CURRENTLY NOT SUPPORTED here)
 
 ~~~shell
-FROM meteorhacks/meteord:onbuild
+FROM steffow/meteord-node4:onbuild
 ~~~
 
 Then you can build the docker image with:
@@ -46,6 +46,8 @@ So, with the above method, MeteorD will download and install Meteor each and eve
 
 ### 2. Running a Meteor bundle with Docker
 
+Steffo: this is what I really support here.
+
 For this you can directly use the MeteorD to run your meteor bundle. MeteorD can accept your bundle either from a local mount or from the web. Let's see:
 
 #### 2.1 From a Local Mount
@@ -57,7 +59,7 @@ docker run -d \
     -e MONGO_OPLOG_URL=mongodb://oplog_url \
     -v /mybundle_dir:/bundle \
     -p 8080:80 \
-    meteorhacks/meteord:base
+    steffow/meteord-node4:base
 ~~~
 
 With this method, MeteorD looks for the tarball version of the meteor bundle. So, you should build the meteor bundle for `os.linux.x86_64` and put it inside the `/bundle` volume. This is how you can build a meteor bundle.
